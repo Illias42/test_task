@@ -1,12 +1,17 @@
 "use client";
 import useColors from "@/lib/hooks/useColors";
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import { SingleDatepicker } from "chakra-dayzed-datepicker";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-const SearchBar = ({isLoading, value, onChange, onSearch}) => {
-  const router = useRouter();
+interface Props {
+  loading: boolean,
+  value: any,
+  onChange: Dispatch<SetStateAction<{}>>,
+  onSearch: () => void
+}
+
+const SearchBar = ({loading, value, onChange, onSearch}: Props) => {
   const colors = useColors();
   const [date, setDate] = useState(new Date());
 
@@ -48,7 +53,7 @@ const SearchBar = ({isLoading, value, onChange, onSearch}) => {
         rounded="md"
         bg={colors.head}
         color="white"
-        isLoading={isLoading}
+        isLoading={loading}
         onClick={onSearch}
       >
         Search

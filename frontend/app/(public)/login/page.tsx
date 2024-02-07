@@ -1,4 +1,5 @@
 "use client";
+import { ROUTES } from "@/lib/constants/routes";
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
@@ -15,12 +16,12 @@ export default function Login() {
     setPassword(e.target.value);
 
   const handleSubmit = () => {
-    router.push("/selector");
+    router.push(ROUTES.ROUTES_LIST);
   };
 
   return (
     <Flex width="100%" height="100%" align="center" justify="center">
-      <Flex direction="column" p={4} gap={4}>
+      <Flex direction="column" p={4} gap={4} pt={20}>
         <Text variant="title" fontSize={{ base: "25px", md: "30px" }}>
           Log in to your account
         </Text>

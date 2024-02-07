@@ -18,18 +18,10 @@ async function bootstrap() {
         callback(null, true);
       } else {
         console.log('blocked cors for:', origin);
-        // callback(new ImATeapotException('Not allowed by CORS'), false);
       }
     },
   });
   app.setGlobalPrefix('/api');
-  // app.useGlobalPipes(
-  //   new ValidationPipe({ whitelist: true, forbidUnknownValues: true }),
-  // );
-  // app.useGlobalInterceptors(
-  //   new ClassSerializerInterceptor(app.get(Reflector)),
-  //   new LoggingInterceptor(),
-  // );
   await app.listen(3000);
 }
 bootstrap();

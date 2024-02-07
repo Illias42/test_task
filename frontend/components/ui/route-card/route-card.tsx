@@ -4,7 +4,13 @@ import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import useColors from "@/lib/hooks/useColors";
 import { useDeleteTrainMutation } from "@/lib/services";
 
-const RouteCard = ({ data, onRemove, toggleSlide }) => {
+interface Props {
+  data: any,
+  onRemove: (id: string) => void,
+  onEdit: () => void  
+}
+
+const RouteCard = ({ data, onRemove, onEdit }: Props) => {
   const colors = useColors();
   const [deleteTrain, { isLoading: isDeleteLoading }] =
     useDeleteTrainMutation();
@@ -26,13 +32,13 @@ const RouteCard = ({ data, onRemove, toggleSlide }) => {
           </Box>
           <Box flex={2}>
             <Flex justify="space-between">
-              <Text>{data.arrivalTime}</Text>
-              <Text>{data.departureTime}</Text>
+              <Text>{data.arrivalTime?.slice(0, 5)}</Text>
+              <Text>{data.departureTime?.slice(0, 5)}</Text>
             </Flex>
             <Box className="h-2 w-full my-4 bg-[#c084fc] hover:bg-[#6b21a8] border-x-8 border-[#6b21a8]" />
             <Flex justify="space-between">
-              <Text>Dnipro</Text>
-              <Text>Lviv</Text>
+              <Text>{data.from}</Text>
+              <Text>{data.to}</Text>
             </Flex>
           </Box>
           <Box flex={2}>
@@ -46,7 +52,7 @@ const RouteCard = ({ data, onRemove, toggleSlide }) => {
                 rounded="full"
                 p={2}
                 colorScheme="purple"
-                onClick={toggleSlide}
+                onClick={onEdit}
               >
                 <EditIcon boxSize={3} />
               </Button>
