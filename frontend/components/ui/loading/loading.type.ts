@@ -1,0 +1,1 @@
+export type LoadingProps = React.PropsWithChildren & { isLoading?: boolean }
